@@ -2,6 +2,7 @@
 import os
 
 from setuptools import Command
+import subprocess
 
 __version__ = '0.1.1'
 
@@ -31,4 +32,4 @@ class build_js(Command):
     def run(self):
         if self.distribution.webpack_output_path:
             output_path = os.path.join(self.build_lib, self.distribution.webpack_output_path)
-            os.system("webpack --output-path '%s'" % output_path)
+            subprocess.check_call("webpack --output-path '%s'" % output_path, shell=True)
